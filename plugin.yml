@@ -1,0 +1,30 @@
+name: ChaosEdit
+main: Chaos\ChaosEdit\Loader
+author: Chaos
+version: 1.0.0
+api: 4.0.0
+commands:
+    cpos1:
+        usage: /cpos1 [x] [y] [z]
+        permission: cmd.c
+    cpos2:
+        usage: /cpos2 [x] [y] [z]
+        permission: cmd.c
+    cfill:
+        usage: /cfill [block]
+        permission: cmd.c
+    chollow:
+        usage: /chollow [block]
+        permission: cmd.c
+    coutline:
+        usage: /coutline [block]
+        permission: cmd.c
+    cundo:
+        usage: /cundo [amount of space]
+        permission: cmd.c
+    creplace:
+        usage: /creplace
+        permission: cmd.c
+permissions:
+    cmd.c:
+        default: op
