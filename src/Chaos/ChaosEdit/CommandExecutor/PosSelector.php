@@ -37,10 +37,10 @@ class PosSelector implements CommandExecutor {
 					}
 				}
 				if($pos->getWorld()->isInWorld($pos->x, $pos->y, $pos->z)){
-					if($command->getName() === "cpos1"){
+					if($command->getName() === "/pos1"){
 						self::$pos1 = $pos;
 						$sender->sendMessage("§aPosition 1 Marked");
-					}elseif($command->getName() === "cpos2"){
+					}elseif($command->getName() === "/pos2"){
 						self::$pos2 = $pos;
 						$sender->sendMessage("§aPosition 2 Marked");
 					}
@@ -52,10 +52,10 @@ class PosSelector implements CommandExecutor {
 				$pos->y = $pos->getFloorY();
 				$pos->z = $pos->getFloorZ();
 				if($pos->getWorld()->isInWorld($pos->x, $pos->y, $pos->z)){
-					if($command->getName() === "cpos1"){
+					if($command->getName() === "/pos1"){
 						self::$pos1 = $pos;
 						$sender->sendMessage("§aPosition 1 Marked at §d$pos->x, $pos->y, $pos->z");
-					}elseif($command->getName() === "cpos2"){
+					}elseif($command->getName() === "/pos2"){
 						self::$pos2 = $pos;
 						$sender->sendMessage("§aPosition 2 Marked at §d$pos->x, $pos->y, $pos->z");
 					}

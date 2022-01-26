@@ -9,6 +9,7 @@ use Chaos\ChaosEdit\CommandExecutor\Outline;
 use Chaos\ChaosEdit\CommandExecutor\PosSelector;
 use Chaos\ChaosEdit\CommandExecutor\Replace;
 use Chaos\ChaosEdit\CommandExecutor\Undo;
+use Chaos\ChaosEdit\CommandExecutor\WailaStick;
 use pocketmine\plugin\PluginBase;
 
 class Loader extends PluginBase {
@@ -16,13 +17,14 @@ class Loader extends PluginBase {
 	protected function onEnable(): void{
 
 		$posSelector = new PosSelector();
-		$this->getServer()->getCommandMap()->getCommand("cpos1")->setExecutor($posSelector);
-		$this->getServer()->getCommandMap()->getCommand("cpos2")->setExecutor($posSelector);
-		$this->getServer()->getCommandMap()->getCommand("cfill")->setExecutor(new Fill());
-		$this->getServer()->getCommandMap()->getCommand("chollow")->setExecutor(new Hollow());
-		$this->getServer()->getCommandMap()->getCommand("coutline")->setExecutor(new Outline());
-		$this->getServer()->getCommandMap()->getCommand("cundo")->setExecutor(new Undo());
-		$this->getServer()->getCommandMap()->getCommand("creplace")->setExecutor(new Replace());
+		$this->getServer()->getCommandMap()->getCommand("/pos1")->setExecutor($posSelector);
+		$this->getServer()->getCommandMap()->getCommand("/pos2")->setExecutor($posSelector);
+		$this->getServer()->getCommandMap()->getCommand("/fill")->setExecutor(new Fill());
+		$this->getServer()->getCommandMap()->getCommand("/hollow")->setExecutor(new Hollow());
+		$this->getServer()->getCommandMap()->getCommand("/outline")->setExecutor(new Outline());
+		$this->getServer()->getCommandMap()->getCommand("/undo")->setExecutor(new Undo());
+		$this->getServer()->getCommandMap()->getCommand("/replace")->setExecutor(new Replace());
+        $this->getServer()->getCommandMap()->getCommand("/waila")->setExecutor(new WailaStick());
 
 	}
 }
