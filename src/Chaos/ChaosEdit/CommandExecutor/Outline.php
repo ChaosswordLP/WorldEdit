@@ -13,6 +13,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 use pocketmine\item\ItemBlock;
 use pocketmine\item\LegacyStringToItemParser;
+use pocketmine\item\LegacyStringToItemParserException;
 use pocketmine\player\Player;
 use pocketmine\world\Position;
 
@@ -30,7 +31,7 @@ class Outline implements CommandExecutor {
 			}else{
 				try{
 					$item = LegacyStringToItemParser::getInstance()->parse($args[0]);
-				}catch(InvalidArgumentException $e){
+				}catch(LegacyStringToItemParserException $e){
 					$sender->sendMessage("§cThat's not a valid block!");
 					return true;
 				}
@@ -49,29 +50,36 @@ class Outline implements CommandExecutor {
 				Undo::$positions[] = $editHistory = new EditHistory($world->getFolderName());
 
 				for($x = $minX; $x <= $maxX; $x++){
-					for($z = $minZ; $z <= $maxZ; $z++){
-						$editHistory->setBlockHistory($x, $minY, $z, $world->getBlockAt($x, $minY, $z, true, false));
-						$editHistory->setBlockHistory($x, $maxY, $z, $world->getBlockAt($x, $maxY, $z, true, false));
-						$world->setBlockAt($x, $minY, $z, $blockNew, false);
-						$world->setBlockAt($x, $maxY, $z, $blockNew, false);
-					}
+                    $editHistory->setBlockHistory($x, $minY, $minZ, $world->getBlockAt($x, $minY, $minZ, true, false));
+                    $editHistory->setBlockHistory($x, $maxY, $maxZ, $world->getBlockAt($x, $maxY, $maxZ, true, false));
+                    $editHistory->setBlockHistory($x, $minY, $maxZ, $world->getBlockAt($x, $minY, $maxZ, true, false));
+                    $editHistory->setBlockHistory($x, $maxY, $minZ, $world->getBlockAt($x, $maxY, $minZ, true, false));
+                    $world->setBlockAt($x, $minY, $minZ, $blockNew, false);
+                    $world->setBlockAt($x, $maxY, $maxZ, $blockNew, false);
+                    $world->setBlockAt($x, $minY, $maxZ, $blockNew, false);
+                    $world->setBlockAt($x, $maxY, $minZ, $blockNew, false);
 				}
-				for($y = $minY + 1; $y <= $maxY - 1; $y++){
-					for($z = $minZ + 1; $z <= $maxZ - 1; $z++){
-						$editHistory->setBlockHistory($minX, $y, $z, $world->getBlockAt($minX, $y, $z, true, false));
-						$editHistory->setBlockHistory($maxX, $y, $z, $world->getBlockAt($maxX, $y, $z, true, false));
-						$world->setBlockAt($minX, $y, $z, $blockNew, false);
-						$world->setBlockAt($maxX, $y, $z, $blockNew, false);
-					}
-				}
-				for($x = $minX; $x <= $maxX; $x++){
-					for($y = $minY + 1; $y <= $maxY - 1; $y++){
-						$editHistory->setBlockHistory($x, $y, $minZ, $world->getBlockAt($x, $y, $minZ, true, false));
-						$editHistory->setBlockHistory($x, $y, $maxZ, $world->getBlockAt($x, $y, $maxZ, true, false));
-						$world->setBlockAt($x, $y, $minZ, $blockNew, false);
-						$world->setBlockAt($x, $y, $maxZ, $blockNew, false);
-					}
-				}
+                for($z = $minZ+1; $z < $maxZ; $z++) {
+                    $editHistory->setBlockHistory($minX, $minY, $z, $world->getBlockAt($minX, $minY, $z, true, false));
+                    $editHistory->setBlockHistory($minX, $maxY, $z, $world->getBlockAt($minX, $maxY, $z, true, false));
+                    $editHistory->setBlockHistory($maxX, $minY, $z, $world->getBlockAt($maxX, $minY, $z, true, false));
+                    $editHistory->setBlockHistory($maxX, $maxY, $z, $world->getBlockAt($maxX, $maxY, $z, true, false));
+                    $world->setBlockAt($minX, $minY, $z, $blockNew, false);
+                    $world->setBlockAt($minX, $maxY, $z, $blockNew, false);
+                    $world->setBlockAt($maxX, $minY, $z, $blockNew, false);
+                    $world->setBlockAt($maxX, $maxY, $z, $blockNew, false);
+                }
+
+                for($y = $minY+1; $y < $maxY; $y++) {
+                    $editHistory->setBlockHistory($minX, $y, $minZ, $world->getBlockAt($minX, $y, $minZ, true, false));
+                    $editHistory->setBlockHistory($minX, $y, $maxZ, $world->getBlockAt($minX, $y, $maxZ, true, false));
+                    $editHistory->setBlockHistory($maxX, $y, $minZ, $world->getBlockAt($maxX, $y, $minZ, true, false));
+                    $editHistory->setBlockHistory($maxX, $y, $maxZ, $world->getBlockAt($maxX, $y, $maxZ, true, false));
+                    $world->setBlockAt($minX, $y, $minZ, $blockNew, false);
+                    $world->setBlockAt($minX, $y, $maxZ, $blockNew, false);
+                    $world->setBlockAt($maxX, $y, $minZ, $blockNew, false);
+                    $world->setBlockAt($maxX, $y, $maxZ, $blockNew, false);
+                }
 
 				$dX = $maxX - $minX;
 				$dY = $maxY - $minY;

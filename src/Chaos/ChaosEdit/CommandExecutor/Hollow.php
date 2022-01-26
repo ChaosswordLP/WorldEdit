@@ -30,7 +30,7 @@ class Hollow implements CommandExecutor {
 			}else{
 				try{
 					$item = LegacyStringToItemParser::getInstance()->parse($args[0]);
-				}catch(InvalidArgumentException $e){
+				}catch(LegacyStringToItemParserException $e){
 					$sender->sendMessage("§cThat's not a valid block!");
 					return true;
 				}

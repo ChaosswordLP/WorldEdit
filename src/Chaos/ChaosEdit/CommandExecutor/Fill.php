@@ -13,6 +13,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 use pocketmine\item\ItemBlock;
 use pocketmine\item\LegacyStringToItemParser;
+use pocketmine\item\LegacyStringToItemParserException;
 use pocketmine\player\Player;
 use pocketmine\world\Position;
 
@@ -30,7 +31,7 @@ class Fill implements CommandExecutor {
 			}else{
 				try{
 					$item = LegacyStringToItemParser::getInstance()->parse($args[0]);
-				}catch(InvalidArgumentException $e){
+				}catch(LegacyStringToItemParserException $e){
 					$sender->sendMessage("§cThat's not a valid block!");
 					return true;
 				}
