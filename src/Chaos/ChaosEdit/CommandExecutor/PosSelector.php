@@ -21,21 +21,33 @@ class PosSelector implements CommandExecutor {
 				$pos->x = $pos->getFloorX();
 				$pos->y = $pos->getFloorY();
 				$pos->z = $pos->getFloorZ();
-				if(isset($args[0])){
-					if($args[0] !== "~"){
-							$pos->x = (int) $args[0];
-					}
-				}
-				if(isset($args[1])){
-					if($args[1] !== "~") {
-							$pos->y = (int) $args[1];
-					}
-				}
-				if(isset($args[2])){
-					if($args[2] !== "~"){
-							$pos->z = (int) $args[2];
-					}
-				}
+                if (isset($args[0])) {
+                    if(is_numeric($args[0] || $args[0])){
+                        if ($args[0] !== "~") {
+                            $pos->x = (int)$args[0];
+                        }
+                    }else{
+                        return false;
+                    }
+                }
+                if (isset($args[1])) {
+                    if(is_numeric($args[1] || $args[1])){
+                        if ($args[1] !== "~") {
+                            $pos->y = (int)$args[1];
+                        }
+                    }else{
+                        return false;
+                    }
+                }
+                if(isset($args[2])) {
+                    if(is_numeric($args[2] || $args[2])){
+                        if ($args[2] !== "~") {
+                            $pos->z = (int)$args[2];
+                        }
+                    }else{
+                        return false;
+                    }
+                }
 				if($pos->getWorld()->isInWorld($pos->x, $pos->y, $pos->z)){
 					if($command->getName() === "/pos1"){
 						self::$pos1 = $pos;
