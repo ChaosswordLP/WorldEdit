@@ -46,7 +46,7 @@ class PosSelector implements CommandExecutor {
                         }
                     }else{
                         return false;
-                    } 
+                    }
                 }
 				if($pos->getWorld()->isInWorld($pos->x, $pos->y, $pos->z)){
 					if($command->getName() === "/pos1"){
