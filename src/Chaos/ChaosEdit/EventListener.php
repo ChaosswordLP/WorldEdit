@@ -14,7 +14,7 @@ class EventListener implements Listener {
         $event->getPlayer()->sendTip("$block");
     }*/
     public function onPlayerThere(PlayerMoveEvent $event): void{
-        $block = $event->getPlayer()->getTargetBlock(40, [0=>true]);
+        $block = $event->getPlayer()->getTargetBlock(7, [0=>true]);
         $event->getPlayer()->sendTip("$block");
     }
 }
