@@ -9,13 +9,17 @@ use Chaos\ChaosEdit\CommandExecutor\Outline;
 use Chaos\ChaosEdit\CommandExecutor\PosSelector;
 use Chaos\ChaosEdit\CommandExecutor\Replace;
 use Chaos\ChaosEdit\CommandExecutor\Undo;
+
 use Chaos\ChaosEdit\CommandExecutor\WailaStick;
+
+use Chaos\ChaosEdit\EventListener;
 use pocketmine\plugin\PluginBase;
 
 class Loader extends PluginBase {
 
 	protected function onEnable(): void{
 
+        $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
 		$posSelector = new PosSelector();
 		$this->getServer()->getCommandMap()->getCommand("/pos1")->setExecutor($posSelector);
 		$this->getServer()->getCommandMap()->getCommand("/pos2")->setExecutor($posSelector);

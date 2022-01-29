@@ -15,9 +15,8 @@ class WailaStick implements CommandExecutor {
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool{;
             if($sender instanceof Player){
-
                 $block = $sender->getTargetBlock(40, [0=>true]);
-                $sender->sendMessage("$block");
+                $sender->sendTip("$block");
 
             }else{
                 $sender->sendMessage("§cFuck off");
