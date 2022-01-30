@@ -9,10 +9,6 @@ use Chaos\ChaosEdit\CommandExecutor\Outline;
 use Chaos\ChaosEdit\CommandExecutor\PosSelector;
 use Chaos\ChaosEdit\CommandExecutor\Replace;
 use Chaos\ChaosEdit\CommandExecutor\Undo;
-
-use Chaos\ChaosEdit\CommandExecutor\WailaStick;
-
-use Chaos\ChaosEdit\EventListener;
 use pocketmine\plugin\PluginBase;
 
 class Loader extends PluginBase {
@@ -28,7 +24,6 @@ class Loader extends PluginBase {
 		$this->getServer()->getCommandMap()->getCommand("/outline")->setExecutor(new Outline());
 		$this->getServer()->getCommandMap()->getCommand("/undo")->setExecutor(new Undo());
 		$this->getServer()->getCommandMap()->getCommand("/replace")->setExecutor(new Replace());
-        $this->getServer()->getCommandMap()->getCommand("/waila")->setExecutor(new WailaStick());
 
 	}
 }

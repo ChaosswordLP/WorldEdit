@@ -25,9 +25,6 @@ commands:
     /replace:
         usage: //replace
         permission: WE
-    /waila:
-        usage: //waila
-        permission: WE
 permissions:
     WE:
         default: op
