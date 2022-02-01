@@ -49,7 +49,7 @@ class Outline implements CommandExecutor {
 				$world = PosSelector::$pos1->getWorld();
 				Undo::$positions[] = $editHistory = new EditHistory($world->getFolderName());
 
-				for($x = $minX; $x <= $maxX; $x++){
+				for($x = $minX; $x <= $maxX; $x++) {
                     $editHistory->setBlockHistory($x, $minY, $minZ, $world->getBlockAt($x, $minY, $minZ, true, false));
                     $editHistory->setBlockHistory($x, $maxY, $maxZ, $world->getBlockAt($x, $maxY, $maxZ, true, false));
                     $editHistory->setBlockHistory($x, $minY, $maxZ, $world->getBlockAt($x, $minY, $maxZ, true, false));
@@ -84,7 +84,7 @@ class Outline implements CommandExecutor {
 				$dX = $maxX - $minX;
 				$dY = $maxY - $minY;
 				$dZ = $maxZ - $minZ;
-				$blockAmount = 2 * ($dX * $dY + $dX * $dZ + $dY * $dZ) + 2;
+				$blockAmount = ($dX + $dY + $dZ) * 4 -4;
 				$sender->sendMessage("§d$blockAmount §ablocks were set successfully!");
 			}
 		}else{
