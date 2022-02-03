@@ -20,10 +20,10 @@ class EditHistory {
 	}
 
 	public function setBlockHistory(int $x, int $y, int $z, Block $block): void{
-		if(isset($this->positions["$x;$y;$z"])){
-			throw new \InvalidArgumentException("Cannot overwrite history");
-		}
-		$this->positions["$x;$y;$z"] = $block;
+        if(isset($this->positions["$x;$y;$z"])){
+            throw new \InvalidArgumentException("Cannot overwrite history");
+        }
+        $this->positions["$x;$y;$z"] = $block;
 	}
 
 	public function getBlockAmount(): int{

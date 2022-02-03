@@ -12,7 +12,7 @@ use pocketmine\world\Position;
 class PosSelector implements CommandExecutor {
 
 	public static ?Position $pos1 = null;
-	public static ?Position $pos2 = null;
+    public static ?Position $pos2 = null;
 
 	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool{
 		if($sender instanceof Player){
@@ -70,7 +70,9 @@ class PosSelector implements CommandExecutor {
 					}elseif($command->getName() === "/pos2"){
 						self::$pos2 = $pos;
 						$sender->sendMessage("§aPosition 2 Marked at §d$pos->x, $pos->y, $pos->z");
-					}
+					}else{
+                        return false;
+                    }
 				}else{
 					$sender->sendMessage("§cThis position is not valid");
 				}
