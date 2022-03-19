@@ -13,6 +13,9 @@ commands:
     /fill:
         usage: //fill [block]
         permission: WE
+    /set:
+        usage: //set [block]
+        permission: WE
     /hollow:
         usage: //hollow [block]
         permission: WE

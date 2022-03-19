@@ -21,7 +21,7 @@ class EditHistory {
 
 	public function setBlockHistory(int $x, int $y, int $z, Block $block): void{
         if(isset($this->positions["$x;$y;$z"])){
-            throw new \InvalidArgumentException("Cannot overwrite history");
+            throw new \InvalidArgumentException("Cannot overwrite overwritten history"); //versucht was doppelt zu speichern -> führt zu Fehler bei dem Editieren der History
         }
         $this->positions["$x;$y;$z"] = $block;
 	}

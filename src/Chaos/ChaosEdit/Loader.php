@@ -20,6 +20,7 @@ class Loader extends PluginBase {
 		$this->getServer()->getCommandMap()->getCommand("/pos1")->setExecutor($posSelector);
 		$this->getServer()->getCommandMap()->getCommand("/pos2")->setExecutor($posSelector);
 		$this->getServer()->getCommandMap()->getCommand("/fill")->setExecutor(new Fill());
+        $this->getServer()->getCommandMap()->getCommand("/set")->setExecutor(new Fill());
 		$this->getServer()->getCommandMap()->getCommand("/hollow")->setExecutor(new Hollow());
 		$this->getServer()->getCommandMap()->getCommand("/outline")->setExecutor(new Outline());
 		$this->getServer()->getCommandMap()->getCommand("/undo")->setExecutor(new Undo());

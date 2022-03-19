@@ -20,7 +20,7 @@ class Undo implements CommandExecutor {
 			return true;
 		}else{
 			if(count(self::$positions) === 0){
-				$sender->sendMessage("§dThere's nothin to undo");
+				$sender->sendMessage("§dThere's nothing to undo");
 				return true;
 			}
 			if(count(self::$positions) === $reset){
@@ -36,7 +36,7 @@ class Undo implements CommandExecutor {
 				$world->setBlockAt($x, $y, $z, $block, false);
 			}
 
-			$sender->sendMessage("§4... you overwrote history...");
+			$sender->sendMessage("§4You overwrote history");
 			return true;
 		}
 	}
